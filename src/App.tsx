@@ -19,9 +19,9 @@ import {
   Heart,
   Leaf
 } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ onOpenReservation }: { onOpenReservation: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -38,7 +38,10 @@ const Navbar = () => {
           <a href="#story" className="hover:text-brand-gold transition-colors">Unsere Story</a>
           <a href="#menu" className="hover:text-brand-gold transition-colors">Genusskarte</a>
           <a href="#contact" className="hover:text-brand-gold transition-colors">Kontakt</a>
-          <button className="bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-full border border-white/20 transition-all duration-300 backdrop-blur-md shadow-lg shadow-brand-gold/5">
+          <button 
+            onClick={onOpenReservation}
+            className="bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-full border border-white/20 transition-all duration-300 backdrop-blur-md shadow-lg shadow-brand-gold/5"
+          >
             Tisch reservieren
           </button>
         </div>
@@ -60,14 +63,19 @@ const Navbar = () => {
           <a href="#story" onClick={() => setIsOpen(false)} className="text-lg font-serif italic text-white">Unsere Story</a>
           <a href="#menu" onClick={() => setIsOpen(false)} className="text-lg font-serif italic text-white">Genusskarte</a>
           <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-serif italic text-white">Kontakt</a>
-          <button className="bg-white/10 text-white px-6 py-3 rounded-full border border-white/20">Reservieren</button>
+          <button 
+            onClick={() => { onOpenReservation(); setIsOpen(false); }}
+            className="bg-white/10 text-white px-6 py-3 rounded-full border border-white/20"
+          >
+            Reservieren
+          </button>
         </motion.div>
       )}
     </nav>
   );
 };
 
-const Hero = () => {
+const Hero = ({ onOpenSpecials }: { onOpenSpecials: () => void }) => {
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -123,11 +131,17 @@ const Hero = () => {
             transition={{ delay: 0.8 }}
             className="flex flex-col md:flex-row gap-6 justify-center items-center"
           >
-            <button className="bg-white/10 text-white px-12 py-5 rounded-full font-medium hover:bg-white/20 transition-all flex items-center gap-3 group border border-white/20 backdrop-blur-md shadow-xl">
+            <a 
+              href="#menu"
+              className="bg-white/10 text-white px-12 py-5 rounded-full font-medium hover:bg-white/20 transition-all flex items-center gap-3 group border border-white/20 backdrop-blur-md shadow-xl"
+            >
               Genusskarte entdecken
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-brand-gold" />
-            </button>
-            <button className="text-white/70 px-12 py-5 rounded-full font-medium hover:text-white transition-all flex items-center gap-2">
+            </a>
+            <button 
+              onClick={onOpenSpecials}
+              className="text-white/70 px-12 py-5 rounded-full font-medium hover:text-white transition-all flex items-center gap-2"
+            >
               <Sparkles className="w-4 h-4 text-brand-gold" />
               Unsere Specials
             </button>
@@ -217,7 +231,7 @@ const Story = () => {
   );
 };
 
-const MenuPreview = () => {
+const MenuPreview = ({ onOpenFullMenu }: { onOpenFullMenu: () => void }) => {
   const categories = [
     {
       title: "Kaffee-Spezialitäten",
@@ -281,7 +295,10 @@ const MenuPreview = () => {
       </div>
 
       <div className="text-center mt-24">
-        <button className="bg-white/5 text-white px-16 py-5 rounded-full border border-white/10 hover:bg-white/10 transition-all backdrop-blur-md shadow-2xl group">
+        <button 
+          onClick={onOpenFullMenu}
+          className="bg-white/5 text-white px-16 py-5 rounded-full border border-white/10 hover:bg-white/10 transition-all backdrop-blur-md shadow-2xl group"
+        >
           Vollständige Karte laden
           <ChevronRight className="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
@@ -343,10 +360,10 @@ const Contact = () => {
           </div>
 
           <div className="flex justify-center gap-8 pt-16 border-t border-white/10 mt-16">
-            <a href="#" className="w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg group">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg group">
               <Instagram size={28} className="group-hover:scale-110 transition-transform" />
             </a>
-            <a href="#" className="w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg group">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg group">
               <Facebook size={28} className="group-hover:scale-110 transition-transform" />
             </a>
           </div>
@@ -372,26 +389,151 @@ const Footer = () => {
         </div>
         
         <div className="flex gap-10 text-xs uppercase tracking-[0.2em] text-white/40 font-medium">
-          <a href="#" className="hover:text-brand-gold transition-colors">Impressum</a>
-          <a href="#" className="hover:text-brand-gold transition-colors">Datenschutz</a>
-          <a href="#" className="hover:text-brand-gold transition-colors">Jobs</a>
+          <button onClick={() => alert('Impressum (Coming Soon)')} className="hover:text-brand-gold transition-colors">Impressum</button>
+          <button onClick={() => alert('Datenschutz (Coming Soon)')} className="hover:text-brand-gold transition-colors">Datenschutz</button>
+          <button onClick={() => alert('Jobs (Coming Soon)')} className="hover:text-brand-gold transition-colors">Jobs</button>
         </div>
       </div>
     </footer>
   );
 };
 
+const Modal = ({ isOpen, onClose, title, children }: { isOpen: boolean, onClose: () => void, title: string, children: React.ReactNode }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-zinc-950/80 backdrop-blur-xl"
+      />
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        className="relative liquid-glass w-full max-w-2xl rounded-[3rem] border border-white/10 p-10 md:p-16 shadow-2xl overflow-hidden"
+      >
+        <div className="absolute -top-20 -left-20 w-64 h-64 bg-brand-gold/10 blur-[100px] rounded-full"></div>
+        <button 
+          onClick={onClose}
+          className="absolute top-8 right-8 text-white/40 hover:text-white transition-colors"
+        >
+          <X size={32} />
+        </button>
+        <h2 className="text-4xl font-serif text-white mb-8 pr-12">{title}</h2>
+        <div className="text-white/70">
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 export default function App() {
+  const [activeModal, setActiveModal] = useState<null | 'reservation' | 'specials' | 'menu'>(null);
+
+  const closeModal = () => setActiveModal(null);
+
   return (
     <div className="min-h-screen selection:bg-brand-gold selection:text-white bg-zinc-950 text-white antialiased">
-      <Navbar />
+      <Navbar onOpenReservation={() => setActiveModal('reservation')} />
       <main>
-        <Hero />
+        <Hero onOpenSpecials={() => setActiveModal('specials')} />
         <Story />
-        <MenuPreview />
+        <MenuPreview onOpenFullMenu={() => setActiveModal('menu')} />
         <Contact />
       </main>
       <Footer />
+
+      <Modal 
+        isOpen={activeModal === 'reservation'} 
+        onClose={closeModal} 
+        title="Tisch reservieren"
+      >
+        <div className="space-y-6">
+          <p className="text-lg">Wir freuen uns darauf, Sie bei uns begrüßen zu dürfen. Bitte füllen Sie das Formular aus oder rufen Sie uns direkt an.</p>
+          <div className="grid gap-4">
+            <input type="text" placeholder="Ihr Name" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-brand-gold outline-none transition-colors" />
+            <div className="grid grid-cols-2 gap-4">
+              <input type="date" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-brand-gold outline-none transition-colors" />
+              <input type="time" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-brand-gold outline-none transition-colors" />
+            </div>
+            <input type="number" placeholder="Personenanzahl" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-brand-gold outline-none transition-colors" />
+          </div>
+          <button 
+            onClick={() => { alert('Reservierung gesendet! (Demo)'); closeModal(); }}
+            className="w-full bg-brand-gold text-zinc-950 font-bold py-5 rounded-2xl hover:bg-white transition-all shadow-xl"
+          >
+            Jetzt anfragen
+          </button>
+          <p className="text-center text-sm text-white/40 italic">Oder telefonisch unter: 0000 / 0000000</p>
+        </div>
+      </Modal>
+
+      <Modal 
+        isOpen={activeModal === 'specials'} 
+        onClose={closeModal} 
+        title="Unsere Wochen-Specials"
+      >
+        <div className="space-y-8">
+          <div className="flex justify-between items-center border-b border-white/5 pb-4">
+            <div>
+              <h4 className="text-xl font-serif text-brand-gold">Matcha Rose Latte</h4>
+              <p className="text-sm text-white/40 italic">Limitierte Edition</p>
+            </div>
+            <span className="text-white font-bold">5.90 €</span>
+          </div>
+          <div className="flex justify-between items-center border-b border-white/5 pb-4">
+            <div>
+              <h4 className="text-xl font-serif text-brand-gold">Pistachio Dream Croissant</h4>
+              <p className="text-sm text-white/40 italic">Frisch aus dem Ofen</p>
+            </div>
+            <span className="text-white font-bold">4.50 €</span>
+          </div>
+          <div className="flex justify-between items-center border-b border-white/5 pb-4">
+            <div>
+              <h4 className="text-xl font-serif text-brand-gold">Avocado Sunshine Toast</h4>
+              <p className="text-sm text-white/40 italic">Mit pochiertem Bio-Ei</p>
+            </div>
+            <span className="text-white font-bold">12.50 €</span>
+          </div>
+          <p className="text-sm text-white/30 text-center italic mt-6">Nur solange der Vorrat reicht. Täglich frisch zubereitet.</p>
+        </div>
+      </Modal>
+
+      <Modal 
+        isOpen={activeModal === 'menu'} 
+        onClose={closeModal} 
+        title="Vollständige Genusskarte"
+      >
+        <div className="max-h-[60vh] overflow-y-auto pr-4 space-y-10 custom-scrollbar">
+          <section>
+            <h3 className="text-brand-gold font-serif text-2xl mb-6 border-b border-white/10 pb-2">Frühstück</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between"><span>Kleines Frühstück</span><span>8.50 €</span></div>
+              <div className="flex justify-between"><span>Sonnenschein Etagere (für 2)</span><span>28.00 €</span></div>
+              <div className="flex justify-between"><span>Hausgemachtes Granola</span><span>7.20 €</span></div>
+            </div>
+          </section>
+          <section>
+            <h3 className="text-brand-gold font-serif text-2xl mb-6 border-b border-white/10 pb-2">Lunch</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between"><span>Tagessuppe</span><span>6.50 €</span></div>
+              <div className="flex justify-between"><span>Quiche der Saison</span><span>8.90 €</span></div>
+              <div className="flex justify-between"><span>Vital-Bowl</span><span>11.50 €</span></div>
+            </div>
+          </section>
+          <section>
+            <h3 className="text-brand-gold font-serif text-2xl mb-6 border-b border-white/10 pb-2">Getränke</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between"><span>Cappuccino</span><span>3.80 €</span></div>
+              <div className="flex justify-between"><span>Hausgemachte Limonade</span><span>4.90 €</span></div>
+              <div className="flex justify-between"><span>Bio-Tee Auswahl</span><span>4.20 €</span></div>
+            </div>
+          </section>
+        </div>
+      </Modal>
     </div>
   );
 }
