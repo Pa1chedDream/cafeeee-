@@ -72,7 +72,7 @@ const Hero = () => {
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=2071&auto=format&fit=crop" 
+          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=2078&auto=format&fit=crop" 
           alt="Atmospheric Café" 
           className="w-full h-full object-cover brightness-[0.4]"
           referrerPolicy="no-referrer"
@@ -172,7 +172,7 @@ const Story = () => {
             className="absolute -bottom-12 -right-12 hidden lg:block w-72 h-72 rounded-[3rem] overflow-hidden border-4 border-white/10 liquid-glass p-3"
           >
              <img 
-              src="https://images.unsplash.com/photo-1559925393-8be0ec41b50b?q=80&w=2071&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 
               alt="Pastry Detail" 
               className="w-full h-full object-cover rounded-[2.5rem]"
               referrerPolicy="no-referrer"
@@ -293,73 +293,63 @@ const MenuPreview = () => {
 const Contact = () => {
   return (
     <section id="contact" className="py-32 px-6 relative">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
+      <div className="max-w-4xl mx-auto">
         <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          className="liquid-glass text-white p-12 md:p-16 rounded-[4rem] space-y-10 border border-white/10 shadow-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="liquid-glass text-white p-12 md:p-20 rounded-[4rem] border border-white/10 shadow-2xl relative overflow-hidden"
         >
-          <h2 className="text-4xl md:text-5xl font-serif">Kontakt & <br /> <span className="serif-italic text-brand-gold">Anfahrt</span></h2>
+          {/* Decorative background element */}
+          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-brand-gold/10 blur-[100px] rounded-full"></div>
           
-          <div className="space-y-8">
-            <div className="flex gap-5 items-start group">
-              <div className="bg-white/5 p-4 rounded-2xl text-brand-gold border border-white/10 group-hover:bg-brand-gold group-hover:text-white transition-all">
-                <MapPin size={24} />
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-serif mb-4">Kontakt & <br /> <span className="serif-italic text-brand-gold">Anfahrt</span></h2>
+            <p className="text-white/40 font-light">Wir freuen uns auf Ihren Besuch im Herzen der Stadt.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="flex flex-col items-center text-center space-y-4 group">
+              <div className="bg-white/5 p-6 rounded-3xl text-brand-gold border border-white/10 group-hover:bg-brand-gold group-hover:text-white transition-all shadow-xl">
+                <MapPin size={32} />
               </div>
               <div>
-                <p className="font-medium text-xl mb-1">Besuchen Sie uns</p>
-                <p className="text-white/40 font-light">Musterstraße 123</p>
-                <p className="text-white/40 font-light">00000 Musterstadt</p>
+                <p className="font-serif text-2xl mb-2">Besuchen Sie uns</p>
+                <p className="text-white/50 font-light">Musterstraße 123</p>
+                <p className="text-white/50 font-light">00000 Musterstadt</p>
               </div>
             </div>
             
-            <div className="flex gap-5 items-start group">
-              <div className="bg-white/5 p-4 rounded-2xl text-brand-gold border border-white/10 group-hover:bg-brand-gold group-hover:text-white transition-all">
-                <Clock size={24} />
+            <div className="flex flex-col items-center text-center space-y-4 group">
+              <div className="bg-white/5 p-6 rounded-3xl text-brand-gold border border-white/10 group-hover:bg-brand-gold group-hover:text-white transition-all shadow-xl">
+                <Clock size={32} />
               </div>
               <div>
-                <p className="font-medium text-xl mb-1">Öffnungszeiten</p>
-                <p className="text-white/40 font-light">Mo - Fr: 00:00 - 00:00 Uhr</p>
-                <p className="text-white/40 font-light">Sa - So: 00:00 - 00:00 Uhr</p>
+                <p className="font-serif text-2xl mb-2">Öffnungszeiten</p>
+                <p className="text-white/50 font-light">Mo - Fr: 08:00 - 18:00 Uhr</p>
+                <p className="text-white/50 font-light">Sa - So: 09:00 - 20:00 Uhr</p>
               </div>
             </div>
 
-            <div className="flex gap-5 items-start group">
-              <div className="bg-white/5 p-4 rounded-2xl text-brand-gold border border-white/10 group-hover:bg-brand-gold group-hover:text-white transition-all">
-                <Heart size={24} />
+            <div className="flex flex-col items-center text-center space-y-4 group">
+              <div className="bg-white/5 p-6 rounded-3xl text-brand-gold border border-white/10 group-hover:bg-brand-gold group-hover:text-white transition-all shadow-xl">
+                <Heart size={32} />
               </div>
               <div>
-                <p className="font-medium text-xl mb-1">Reservierung</p>
-                <p className="text-white/40 font-light">0000 / 0000000</p>
-                <p className="text-white/40 font-light">hallo@cafe-sonnenschein.de</p>
+                <p className="font-serif text-2xl mb-2">Reservierung</p>
+                <p className="text-white/50 font-light">0000 / 0000000</p>
+                <p className="text-white/50 font-light">hallo@cafe-sonnenschein.de</p>
               </div>
             </div>
           </div>
 
-          <div className="flex gap-6 pt-6">
-            <a href="#" className="w-14 h-14 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg">
-              <Instagram size={24} />
+          <div className="flex justify-center gap-8 pt-16 border-t border-white/10 mt-16">
+            <a href="#" className="w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg group">
+              <Instagram size={28} className="group-hover:scale-110 transition-transform" />
             </a>
-            <a href="#" className="w-14 h-14 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg">
-              <Facebook size={24} />
+            <a href="#" className="w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white hover:text-zinc-950 transition-all shadow-lg group">
+              <Facebook size={28} className="group-hover:scale-110 transition-transform" />
             </a>
           </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          className="lg:col-span-2 rounded-[4rem] overflow-hidden h-[500px] lg:h-auto shadow-2xl border border-white/10 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
-        >
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2427.632225211915!2d13.4385!3d52.5445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDMyJzQwLjIiTiAxM8KwMjYnMTguNiJF!5e0!3m2!1sen!2sde!4v1625581234567!5m2!1sen!2sde" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen 
-            loading="lazy"
-            title="Location Map"
-          ></iframe>
         </motion.div>
       </div>
     </section>
